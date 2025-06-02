@@ -25,3 +25,9 @@ services:
     restart: on-failure
     networks:
       - ayuntamiento-net
+    environment:
+      SERVER_PORT: 8094
+      SPRING_DATA_MONGODB_URI: mongodb://ayuntamiento-mongo:27017/ayuntamiento-db
+      SPRING_APPLICATION_NAME: ayuntamiento-access
+      SPRING_CONFIG_IMPORT: optional:configserver:http://host.docker.internal:8888
+      SPRING_CLOUD_CONFIG_ENABLED: "true"

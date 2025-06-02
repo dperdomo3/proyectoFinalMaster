@@ -4,7 +4,6 @@ networks:
   bike-net:
 
 services:
-
   mysql:
     image: mysql:8
     container_name: bike-mysql
@@ -40,3 +39,12 @@ services:
     restart: on-failure
     networks:
       - bike-net
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://bike-mysql:3306/bikedb
+      SPRING_DATASOURCE_USERNAME: user
+      SPRING_DATASOURCE_PASSWORD: pass
+      SPRING_DATASOURCE_DRIVER_CLASS_NAME: com.mysql.cj.jdbc.Driver
+      SPRING_JPA_HIBERNATE_DDL_AUTO: none
+      SPRING_SQL_INIT_MODE: always
+      SPRING_DATA_MONGODB_URI: mongodb://bike-mongo:27017/bikes-status
+      SERVER_PORT: 8091

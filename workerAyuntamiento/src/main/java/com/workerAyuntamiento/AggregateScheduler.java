@@ -21,12 +21,12 @@ public class AggregateScheduler {
 
     private final RestTemplate restTemplate = new RestTemplate();
 
-    @Scheduled(fixedRateString = "${agg.interval:120000}") // cada 2 minutos por defecto
+    @Scheduled(initialDelay = 60000, fixedRateString = "${agg.interval:120000}")// cada 2 minutos por defecto
     public void ejecutarTarea() {
         System.out.println("Ejecutando petición de agregación al gateway...");
 
         HttpHeaders headers = new HttpHeaders();
-        headers.setBearerAuth(token); // No incluyas "Bearer " en el .properties
+        headers.setBearerAuth(token); 
         headers.set("X-User-Role", "SERVICIO");
 
         HttpEntity<Void> request = new HttpEntity<>(headers);

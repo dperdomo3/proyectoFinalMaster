@@ -8,7 +8,7 @@ WORKDIR /app
 COPY target/access-0.0.1-SNAPSHOT.jar app.jar
 
 # Puerto que expone el servicio
-EXPOSE 8086
+EXPOSE 8091
 
 # Comando de ejecución
 ENTRYPOINT ["java", "-jar", "app.jar"]
