@@ -53,7 +53,7 @@ public class ForwardController {
         String url;
 
         if (from != null && to != null) {
-            // ⚠️ Este es el endpoint del microservicio de eventos
+            // Este es el endpoint del microservicio de eventos
             url = bikeServiceUrl + "/aparcamiento/" + id + "/status?from=" + from + "&to=" + to;
         } else {
             // Este es el endpoint de estado actual
@@ -114,7 +114,7 @@ public class ForwardController {
     // === MÉTODOS DE APOYO ===
     private boolean hasAdminRole(HttpServletRequest request) {
         String role = (String) request.getAttribute("X-User-Role");
-        System.out.println("🔎 Rol detectado en gateway: " + role);
+        System.out.println("Rol detectado en gateway: " + role);
         return role != null && role.equalsIgnoreCase("ADMIN");
     }
 
@@ -122,8 +122,8 @@ public class ForwardController {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         headers.set("Authorization", request.getHeader("Authorization"));
-        headers.set("X-User-Role", (String) request.getAttribute("X-User-Role")); // ✅ Añadir rol
-        headers.set("X-User-Id", (String) request.getAttribute("X-User-Id")); // ✅ Añadir userId
+        headers.set("X-User-Role", (String) request.getAttribute("X-User-Role")); //Añadir rol
+        headers.set("X-User-Id", (String) request.getAttribute("X-User-Id")); //Añadir userId
         HttpEntity<String> entity = new HttpEntity<>(body, headers);
         return restTemplate.exchange(url, HttpMethod.POST, entity, Object.class);
     }
@@ -131,8 +131,8 @@ public class ForwardController {
     private ResponseEntity<Object> forwardDelete(HttpServletRequest request, String url) {
         HttpHeaders headers = new HttpHeaders();
         headers.set("Authorization", request.getHeader("Authorization"));
-        headers.set("X-User-Role", (String) request.getAttribute("X-User-Role")); // ✅ Añadir rol
-        headers.set("X-User-Id", (String) request.getAttribute("X-User-Id")); // ✅ Añadir userId
+        headers.set("X-User-Role", (String) request.getAttribute("X-User-Role")); //Añadir rol
+        headers.set("X-User-Id", (String) request.getAttribute("X-User-Id")); // Añadir userId
         HttpEntity<Void> entity = new HttpEntity<>(headers);
         return restTemplate.exchange(url, HttpMethod.DELETE, entity, Object.class);
     }

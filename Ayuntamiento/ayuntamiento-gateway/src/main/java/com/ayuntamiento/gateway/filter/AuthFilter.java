@@ -27,7 +27,7 @@ public class AuthFilter extends OncePerRequestFilter {
             throws ServletException, IOException {
 
         String path = request.getRequestURI();
-        System.out.println("🔐 Interceptando: " + request.getMethod() + " " + path);
+        System.out.println("Interceptando: " + request.getMethod() + " " + path);
 
         if (isPublic(path)) {
             filterChain.doFilter(request, response);
@@ -56,7 +56,7 @@ public class AuthFilter extends OncePerRequestFilter {
 
             request.setAttribute("X-User-Id", userId);
             request.setAttribute("X-User-Role", role);
-            System.out.println("✅ Token válido. Rol: " + role);
+            System.out.println("Token válido. Rol: " + role);
 
         } catch (Exception e) {
             response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
