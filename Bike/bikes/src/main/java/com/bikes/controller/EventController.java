@@ -19,8 +19,7 @@ public class EventController {
         this.eventService = eventService;
     }
 
-    // Permite a un aparcamiento registrar un evento (aparcamiento,
-    // alquiler,reposición, retirada múltiple)
+    // Permite a un aparcamiento registrar un evento (aparcamiento,alquiler,reposición, retirada múltiple)
     // Formato esperado:
     // { "operation": "alquiler", "bikesAvailable": 12, "freeParkingSpots": 8}
     @PostMapping("/{id}")

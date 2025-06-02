@@ -25,7 +25,7 @@ public class GatewayFilter extends OncePerRequestFilter {
 
         String path = request.getRequestURI();
         String method = request.getMethod();
-        System.out.println("🔐 Interceptando: " + method + " " + path);
+        System.out.println("Interceptando: " + method + " " + path);
 
         // RUTAS PÚBLICAS
         boolean esPublica = (path.equals("/aparcamientos") && method.equals("GET")) ||
@@ -96,7 +96,7 @@ public class GatewayFilter extends OncePerRequestFilter {
                 }
 
             } catch (Exception e) {
-                System.out.println("❌ Token inválido: " + e.getMessage());
+                System.out.println("Token inválido: " + e.getMessage());
                 response.setStatus(HttpStatus.UNAUTHORIZED.value());
                 response.getWriter().write("Token inválido");
                 return;
