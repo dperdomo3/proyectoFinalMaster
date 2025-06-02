@@ -58,7 +58,7 @@ public class IntegracionController {
 
         accesoRemotoService.guardarDatos(dto.getAggregatedData());
 
-        return ResponseEntity.ok("Datos agregados guardados correctamente en ayuntamiento-access");
+        return ResponseEntity.ok("✅ Datos agregados guardados correctamente en ayuntamiento-access");
     }
 
     @PostMapping("/estacion")

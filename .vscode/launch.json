@@ -82,7 +82,8 @@
             "mainClass": "com.pollution.gateway.PollutionGatewayApplication",
             "projectName": "pollution-gateway",
             "args": "",
-            "envFile": "${workspaceFolder}/.env"
+            "envFile": "${workspaceFolder}/.env",
+            "vmArgs": " -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=62812 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dspring.jmx.enabled=true -Djava.rmi.server.hostname=localhost -Dspring.application.admin.enabled=true -Dspring.boot.project.name=pollution-gateway"
         },
         {
             "type": "java",
@@ -92,7 +93,8 @@
             "mainClass": "com.pollution.PollutionServiceApplication",
             "projectName": "pollution-service",
             "args": "",
-            "envFile": "${workspaceFolder}/.env"
+            "envFile": "${workspaceFolder}/.env",
+            "vmArgs": " -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=62809 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dspring.jmx.enabled=true -Djava.rmi.server.hostname=localhost -Dspring.application.admin.enabled=true -Dspring.boot.project.name=pollution-service"
         },
         {
             "type": "java",
@@ -112,6 +114,16 @@
             "cwd": "${workspaceFolder}",
             "mainClass": "com.worker.bike.Application",
             "projectName": "worker.bike",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-AyuntamientoAccessApplication<ayuntamiento-access>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.data.ayuntamientoaccess.AyuntamientoAccessApplication",
+            "projectName": "ayuntamiento-access",
             "args": "",
             "envFile": "${workspaceFolder}/.env"
         }
