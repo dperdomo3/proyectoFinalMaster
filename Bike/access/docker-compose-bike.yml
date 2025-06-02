@@ -1,0 +1,42 @@
+version: '3.8'
+
+networks:
+  bike-net:
+
+services:
+
+  mysql:
+    image: mysql:8
+    container_name: bike-mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: bikedb
+      MYSQL_USER: user
+      MYSQL_PASSWORD: pass
+    ports:
+      - "3308:3306"
+    networks:
+      - bike-net
+
+  mongo:
+    image: mongo:6
+    container_name: bike-mongo
+    restart: always
+    ports:
+      - "27019:27017"
+    networks:
+      - bike-net
+
+  bike-access:
+    build:
+      context: .
+    container_name: bike-access
+    ports:
+      - "8091:8091"
+    depends_on:
+      - mysql
+      - mongo
+    restart: on-failure
+    networks:
+      - bike-net

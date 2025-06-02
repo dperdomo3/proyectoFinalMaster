@@ -1,0 +1,42 @@
+version: '3.8'
+
+networks:
+  pollution-net:
+
+services:
+
+  mysql:
+    image: mysql:8
+    container_name: pollution-mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: pollutiondb
+      MYSQL_USER: user
+      MYSQL_PASSWORD: pass
+    ports:
+      - "3307:3306"
+    networks:
+      - pollution-net
+
+  mongo:
+    image: mongo:6
+    container_name: pollution-mongo
+    restart: always
+    ports:
+      - "27018:27017"
+    networks:
+      - pollution-net
+
+  pollution-access:
+    build:
+      context: .
+    container_name: pollution-access
+    ports:
+      - "8086:8086"
+    depends_on:
+      - mysql
+      - mongo
+    restart: on-failure
+    networks:
+      - pollution-net

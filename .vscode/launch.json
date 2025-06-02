@@ -1,0 +1,108 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-AccessApplication<access>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.data.access.AccessApplication",
+            "projectName": "access",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-AuthApplication<auth>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.bikes.auth.AuthApplication",
+            "projectName": "auth",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env",
+            "vmArgs": " -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=62802 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dspring.jmx.enabled=true -Djava.rmi.server.hostname=localhost -Dspring.application.admin.enabled=true -Dspring.boot.project.name=auth"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-AyuntamientoGatewayApplication<ayuntamiento-gateway>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.ayuntamiento.gateway.AyuntamientoGatewayApplication",
+            "projectName": "ayuntamiento-gateway",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env",
+            "vmArgs": " -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=62805 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dspring.jmx.enabled=true -Djava.rmi.server.hostname=localhost -Dspring.application.admin.enabled=true -Dspring.boot.project.name=ayuntamiento-gateway"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-AyuntamientoServiceApplication<ayuntamiento-service>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.ayuntamiento.service.AyuntamientoServiceApplication",
+            "projectName": "ayuntamiento-service",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env",
+            "vmArgs": " -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=62807 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dspring.jmx.enabled=true -Djava.rmi.server.hostname=localhost -Dspring.application.admin.enabled=true -Dspring.boot.project.name=ayuntamiento-service"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-BikesServiceApplication<bikes>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.bikes.BikesServiceApplication",
+            "projectName": "bikes",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env",
+            "vmArgs": " -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=62816 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dspring.jmx.enabled=true -Djava.rmi.server.hostname=localhost -Dspring.application.admin.enabled=true -Dspring.boot.project.name=bikes"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-AuthGatewayApplication<gateway-service>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.bikes.gateway.AuthGatewayApplication",
+            "projectName": "gateway-service",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-PollutionAccessApplication<pollution-access>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.data.pollutionaccess.PollutionAccessApplication",
+            "projectName": "pollution-access",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-PollutionGatewayApplication<pollution-gateway>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.pollution.gateway.PollutionGatewayApplication",
+            "projectName": "pollution-gateway",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-PollutionServiceApplication<pollution-service>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.pollution.PollutionServiceApplication",
+            "projectName": "pollution-service",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-BikeGatewayApplication<gateway-service>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.bikes.gateway.BikeGatewayApplication",
+            "projectName": "gateway-service",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
