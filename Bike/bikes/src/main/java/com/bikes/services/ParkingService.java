@@ -14,7 +14,7 @@ import java.util.Optional;
 public class ParkingService {
 
     private final RestTemplate restTemplate;
-    private final String DATA_SERVICE_URL = "http://localhost:8091/data/parkings";
+    private final String DATA_SERVICE_URL = "http://access/data/parkings";
 
     public ParkingService(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
@@ -49,7 +49,7 @@ public class ParkingService {
 
     public List<Parking> getTop10() {
         ResponseEntity<Parking[]> response = restTemplate.getForEntity(
-                "http://localhost:8091/data/parkings/top10", Parking[].class);
+                "http://access/data/parkings/top10", Parking[].class);
         return Arrays.asList(response.getBody());
     }
 

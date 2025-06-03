@@ -1,15 +1,3 @@
-CREATE TABLE parking (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  direction VARCHAR(255),
-  bikes_capacity INT,
-  latitude DOUBLE,
-  longitude DOUBLE,
-  bikes_available INT,
-  free_parking_spots INT,
-  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-
-
 INSERT INTO parking (direction, bikes_capacity, latitude, longitude, bikes_available, free_parking_spots, created_at) VALUES
 ('Calle Sol', 10, 39.4699, -0.3763, 10, 0, NOW()),
 ('Calle Luna', 8, 29.4700, 0.3770, 8, 0, NOW()),

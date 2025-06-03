@@ -16,7 +16,7 @@ import java.util.Optional;
 @Service
 public class EventService {
     private final RestTemplate restTemplate;
-    private final String DATA_SERVICE_URL = "http://localhost:8091/data/events";
+    private final String DATA_SERVICE_URL = "http://access/data/events";
 
     public EventService(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
