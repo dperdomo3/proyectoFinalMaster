@@ -1,11 +1,3 @@
--- Crear tabla estacion
-CREATE TABLE IF NOT EXISTS estacion (
-    id BIGINT AUTO_INCREMENT PRIMARY KEY,
-    direccion VARCHAR(255),
-    latitud DOUBLE,
-    longitud DOUBLE
-);
-
 -- Insertar datos iniciales
 INSERT INTO estacion (direccion, latitud, longitud) VALUES
 ('Calle Viento', 39.4705, -0.3760),

@@ -7,11 +7,6 @@ import org.springframework.http.*;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 
 import java.util.*;
 
@@ -24,9 +19,13 @@ public class PollutionReadingScheduler {
     @Value("${pollution.auth.token}")
     private String token;
 
-    private final RestTemplate restTemplate = new RestTemplate();
+    private final RestTemplate restTemplate;
     private final ObjectMapper objectMapper = new ObjectMapper();
     private final Random random = new Random();
+
+    public PollutionReadingScheduler(RestTemplate restTemplate) {
+        this.restTemplate = restTemplate;
+    }
 
     @Scheduled(fixedRate = 60000)
     public void enviarLectura() {

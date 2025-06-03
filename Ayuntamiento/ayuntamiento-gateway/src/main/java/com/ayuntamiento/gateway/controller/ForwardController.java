@@ -4,15 +4,21 @@ import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
+import com.ayuntamiento.gateway.config.RestTemplateConfig;
 
 @RestController
 @RequestMapping("/api")
 public class ForwardController {
 
-    private final RestTemplate restTemplate = new RestTemplate();
-    private final String ayuntamientoServiceUrl = "http://localhost:8093/api/ayuntamiento";
-    private final String bikeServiceUrl = "http://localhost:8080";
-    private final String pollutionServiceUrl = "http://localhost:8085";
+    private final RestTemplate restTemplate;
+
+    public ForwardController(RestTemplate restTemplate) {
+        this.restTemplate = restTemplate;
+    }
+
+    private final String ayuntamientoServiceUrl = "http://ayuntamiento-service/api/ayuntamiento";
+    private final String bikeServiceUrl = "http://gateway-service";
+    private final String pollutionServiceUrl = "http://pollution-gateway";
 
     // === AYUNTAMIENTO ===
 

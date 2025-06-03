@@ -20,7 +20,7 @@ public class AuthFilter extends OncePerRequestFilter {
 
     private final RestTemplate restTemplate = new RestTemplate();
     private final ObjectMapper objectMapper = new ObjectMapper();
-    private static final String AUTH_SERVICE_VALIDATE_URL = "http://localhost:8081/api/auth/validate?token=";
+    private static final String AUTH_SERVICE_VALIDATE_URL = "http://auth/api/auth/validate?token=";
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)

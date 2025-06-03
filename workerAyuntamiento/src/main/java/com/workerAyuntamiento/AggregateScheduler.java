@@ -1,14 +1,11 @@
 package com.workerAyuntamiento;
 
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
-
-import java.util.*;
 
 @Component
 public class AggregateScheduler {
@@ -19,14 +16,18 @@ public class AggregateScheduler {
     @Value("${ayuntamiento.auth.token}")
     private String token;
 
-    private final RestTemplate restTemplate = new RestTemplate();
+    private final RestTemplate restTemplate;
 
-    @Scheduled(initialDelay = 60000, fixedRateString = "${agg.interval:120000}")// cada 2 minutos por defecto
+    public AggregateScheduler(RestTemplate restTemplate) {
+        this.restTemplate = restTemplate;
+    }
+
+    @Scheduled(initialDelay = 60000, fixedRateString = "${agg.interval:120000}") // cada 2 minutos por defecto
     public void ejecutarTarea() {
         System.out.println("Ejecutando petición de agregación al gateway...");
 
         HttpHeaders headers = new HttpHeaders();
-        headers.setBearerAuth(token); 
+        headers.setBearerAuth(token);
         headers.set("X-User-Role", "SERVICIO");
 
         HttpEntity<Void> request = new HttpEntity<>(headers);

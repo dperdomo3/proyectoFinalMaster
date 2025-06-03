@@ -15,7 +15,7 @@ public class AccesoRemotoService {
     @Autowired
     private RestTemplate restTemplate;
 
-    private static final String BASE_URL = "http://localhost:8094/aggregated-data"; // Ajusta el puerto si es necesario
+    private static final String BASE_URL = "http://ayuntamiento-access/aggregated-data"; // Ajusta el puerto si es necesario
 
     public void guardarDatos(List<EstacionAparcamientoData> data) {
         AggregatedDataDTO dto = new AggregatedDataDTO();

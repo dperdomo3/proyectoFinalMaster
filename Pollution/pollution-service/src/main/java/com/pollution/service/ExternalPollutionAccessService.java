@@ -14,7 +14,7 @@ public class ExternalPollutionAccessService {
     private RestTemplate restTemplate;
 
     // URL base del microservicio pollution-access
-    private final String baseUrl = "http://localhost:8086";
+    private final String baseUrl = "http://pollution-access";
 
     /**
      * Crea una estación en el microservicio de acceso.

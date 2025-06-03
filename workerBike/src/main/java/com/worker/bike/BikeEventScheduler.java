@@ -22,7 +22,7 @@ public class BikeEventScheduler {
     @Value("${bike.evento.url}")
     private String apiUrl;
 
-    private final RestTemplate restTemplate = new RestTemplate();
+    private final RestTemplate restTemplate;
     private final ObjectMapper objectMapper = new ObjectMapper();
     private final Random random = new Random();
 
@@ -30,12 +30,16 @@ public class BikeEventScheduler {
             "alquiler", "aparcamiento", "retirada_multiple", "reposicion_multiple"
     );
 
+    public BikeEventScheduler(RestTemplate restTemplate) {
+        this.restTemplate = restTemplate;
+    }
+
     @Scheduled(fixedRate = 60000)
     public void enviarEvento() {
         List<AparcamientoDTO> aparcamientos = obtenerAparcamientos();
 
         if (aparcamientos.isEmpty()) {
-            System.err.println("❌ No se encontraron aparcamientos para generar evento.");
+            System.err.println("No se encontraron aparcamientos para generar evento.");
             return;
         }
 
@@ -44,13 +48,11 @@ public class BikeEventScheduler {
             String operacion = operaciones.get(random.nextInt(operaciones.size()));
             int cantidad = random.nextInt(3) + 1;
 
-            // Validaciones por tipo de operación
             if (operacion.equals("alquiler") && aparcamiento.bikesAvailable < 1) continue;
             if (operacion.equals("aparcamiento") && aparcamiento.freeParkingSpots < 1) continue;
             if (operacion.equals("retirada_multiple") && aparcamiento.bikesAvailable < cantidad) continue;
             if (operacion.equals("reposicion_multiple") && aparcamiento.freeParkingSpots < cantidad) continue;
 
-            // Construcción del payload
             Map<String, Object> payload = new HashMap<>();
             payload.put("operation", operacion);
             payload.put("quantity", cantidad);
@@ -109,7 +111,6 @@ public class BikeEventScheduler {
         return aparcamientos;
     }
 
-    // Clase interna simple para transportar datos del aparcamiento
     static class AparcamientoDTO {
         public int id;
         public int bikesAvailable;

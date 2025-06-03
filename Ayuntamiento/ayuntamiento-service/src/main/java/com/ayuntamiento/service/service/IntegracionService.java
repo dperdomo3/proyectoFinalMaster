@@ -20,7 +20,7 @@ public class IntegracionService {
     @Autowired
     private RestTemplate restTemplate;
 
-    private static final String GATEWAY_BASE_URL = "http://localhost:8090/api";
+    private static final String GATEWAY_BASE_URL = "http://ayuntamiento-gateway/api";
 
     public ResponseEntity<Object> obtenerSoloEstaciones() {
         try {
@@ -51,7 +51,7 @@ public class IntegracionService {
             List<Map<String, Object>> aparcamientos = response.getBody();
             return buscarAparcamientoCercano(aparcamientos, lat, lon);
         } catch (Exception e) {
-            System.out.println("❌ Error obteniendo aparcamientos: " + e.getMessage());
+            System.out.println("Error obteniendo aparcamientos: " + e.getMessage());
             return null;
         }
     }
@@ -100,7 +100,7 @@ public class IntegracionService {
                     List<Map<String, Object>> bikeEvents = bikeEventsResponse.getBody();
 
                     if (bikeEvents == null || bikeEvents.isEmpty()) {
-                        System.out.println("❌ No hay eventos de bicicletas para aparcamiento ID " + id);
+                        System.out.println("No hay eventos de bicicletas para aparcamiento ID " + id);
                         continue;
                     }
 
@@ -108,7 +108,7 @@ public class IntegracionService {
                             .mapToDouble(e -> Double.parseDouble(e.get("bikesAvailable").toString()))
                             .average()
                             .orElse(0.0);
-                    System.out.println("✅ Promedio bikesAvailable: " + avgBikes);
+                    System.out.println("Promedio bikesAvailable: " + avgBikes);
 
                     Map<String, Object> estacionMasCercana = null;
                     double menorDistancia = Double.MAX_VALUE;
@@ -123,13 +123,13 @@ public class IntegracionService {
                     }
 
                     if (estacionMasCercana == null) {
-                        System.out.println("❌ No se encontró estación cercana para aparcamiento ID " + id);
+                        System.out.println("No se encontró estación cercana para aparcamiento ID " + id);
                         continue;
                     }
 
                     Long estacionId = Long.parseLong(estacionMasCercana.get("id").toString());
                     System.out.println(
-                            "📍 Estación más cercana: ID " + estacionId + " (distancia: " + menorDistancia + " km)");
+                            "Estación más cercana: ID " + estacionId + " (distancia: " + menorDistancia + " km)");
 
                     String urlPollution = String.format(
                             GATEWAY_BASE_URL + "/estacion/%d/status?from=%s&to=%s",
@@ -143,11 +143,11 @@ public class IntegracionService {
                             .get("data");
 
                     if (pollutionLectures == null || pollutionLectures.isEmpty()) {
-                        System.out.println("❌ No hay lecturas de polución para estación ID " + estacionId);
+                        System.out.println("No hay lecturas de polución para estación ID " + estacionId);
                         continue;
                     }
 
-                    System.out.println("✅ Lecturas encontradas: " + pollutionLectures.size());
+                    System.out.println("Lecturas encontradas: " + pollutionLectures.size());
 
                     double totalNO = 0, totalNO2 = 0, totalVOCs = 0, totalPM = 0;
                     int count = pollutionLectures.size();
@@ -171,21 +171,21 @@ public class IntegracionService {
                     dato.setAir_quality(airQuality);
 
                     resultados.add(dato);
-                    System.out.println("✅ Dato agregado al resultado");
+                    System.out.println("Dato agregado al resultado");
                 } catch (Exception e) {
-                    System.out.println("❌ Error con aparcamiento ID " + id + ": " + e.getMessage());
+                    System.out.println("Error con aparcamiento ID " + id + ": " + e.getMessage());
                 }
             }
 
         } catch (Exception e) {
-            System.out.println("⚠️ Error general en la agregación: " + e.getMessage());
+            System.out.println("Error general en la agregación: " + e.getMessage());
         }
 
         AggregatedDataDTO resultadoFinal = new AggregatedDataDTO();
         resultadoFinal.setTimeStamp(Instant.now());
         resultadoFinal.setAggregatedData(resultados);
 
-        System.out.println("📦 Total de datos agregados: " + resultados.size());
+        System.out.println("Total de datos agregados: " + resultados.size());
         return resultadoFinal;
     }
 
