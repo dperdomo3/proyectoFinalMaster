@@ -83,7 +83,13 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- (Opcional) Config Client -->
+        <!-- Eureka -->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+		</dependency>
+
+        <!--  Config Client -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-config</artifactId>

@@ -50,3 +50,5 @@ services:
       SPRING_DATA_MONGODB_URI: mongodb://pollution-mongo:27017/pollution-db
       SERVER_PORT: 8086
       SPRING_CLOUD_CONFIG_ENABLED: false
+      # Eureka
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://host.docker.internal:8761/eureka

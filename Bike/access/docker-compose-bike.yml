@@ -4,6 +4,7 @@ networks:
   bike-net:
 
 services:
+
   mysql:
     image: mysql:8
     container_name: bike-mysql
@@ -40,11 +41,21 @@ services:
     networks:
       - bike-net
     environment:
+      SERVER_PORT: 8091
+
+      # MySQL
       SPRING_DATASOURCE_URL: jdbc:mysql://bike-mysql:3306/bikedb
       SPRING_DATASOURCE_USERNAME: user
       SPRING_DATASOURCE_PASSWORD: pass
       SPRING_DATASOURCE_DRIVER_CLASS_NAME: com.mysql.cj.jdbc.Driver
       SPRING_JPA_HIBERNATE_DDL_AUTO: none
       SPRING_SQL_INIT_MODE: always
+
+      # MongoDB
       SPRING_DATA_MONGODB_URI: mongodb://bike-mongo:27017/bikes-status
-      SERVER_PORT: 8091
+
+      # Config Server
+      SPRING_CLOUD_CONFIG_ENABLED: "false"
+
+      # Eureka (host local, fuera del contenedor)
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://host.docker.internal:8761/eureka
