@@ -68,7 +68,7 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- Config Client (si aplica para este servicio) -->
+        <!-- Config Client -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-config</artifactId>
